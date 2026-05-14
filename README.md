@@ -41,6 +41,7 @@ GitHub-search-users/
 │   └── index.css                # Tailwind + 글로벌 스타일
 ├── index.html
 ├── vite.config.js
+├── vercel.json
 └── package.json
 ```
 
@@ -141,3 +142,32 @@ GitHub 다크 테마 기반 CSS 변수:
 | 모바일 | `< 768px` | 1열, 햄버거 메뉴 |
 | 태블릿 | `768px ~` | 2열 그리드 |
 | 데스크탑 | `1024px ~` | 2단 레이아웃 (사이드바) |
+
+---
+
+## ☁️ 배포 (Vercel)
+
+이 프로젝트는 **Vercel**을 통해 배포되어 있습니다.
+
+### 배포 URL
+> Vercel 대시보드에서 확인한 URL을 여기에 입력하세요.  
+> 예: `https://github-search-users-xxx.vercel.app`
+
+### 배포 방법
+1. [vercel.com](https://vercel.com)에서 GitHub 계정으로 로그인
+2. **New Project** → GitHub 저장소(`GitHub-search-users`) 선택
+3. 빌드 설정 자동 감지 (Vite 프로젝트 자동 인식)
+4. **Deploy** 클릭
+
+### 자동 재배포
+- `main` 브랜치에 push할 때마다 **자동으로 재배포**됩니다.
+
+### SPA 라우팅 처리
+React Router의 클라이언트 사이드 라우팅을 위해 `vercel.json`을 추가했습니다.  
+이 설정이 없으면 `/user/:login` URL로 직접 접근하거나 새로고침 시 404 에러가 발생합니다.
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```

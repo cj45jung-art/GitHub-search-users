@@ -193,6 +193,37 @@ src/
 
 ---
 
+### STEP 6 — Vercel 배포
+
+**프롬프트 요약:**
+> 현재 깃허브에 Node.js로 배포된 작업을 Vercel로 배포해 줘
+
+**구현 내용:**
+
+#### 배포 방식
+- **GitHub 연동 자동 배포** 방식 선택
+- [vercel.com](https://vercel.com)에서 GitHub 계정으로 로그인
+- **New Project** → `GitHub-search-users` 저장소 선택
+- Vite 프로젝트 자동 감지 → 빌드 설정 자동 구성
+- **Deploy** 클릭으로 배포 완료
+
+#### vercel.json 추가
+React Router(`BrowserRouter`)를 사용하는 SPA 특성상, `/user/:login` 같은 URL로 직접 접근하거나 새로고침 시 Vercel 서버가 해당 경로를 찾지 못해 **404 에러**가 발생합니다.
+
+이를 방지하기 위해 모든 요청을 `index.html`로 리다이렉트하는 `vercel.json`을 추가했습니다:
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+#### 자동 재배포
+- `main` 브랜치에 push할 때마다 Vercel이 자동으로 감지하여 재배포
+- `vercel.json` 추가 후 GitHub push → Vercel 자동 재배포 완료
+
+---
+
 ## 💡 학습 포인트
 
 1. **Tailwind CSS v4** — `@import "tailwindcss"` 방식 (v3의 `@tailwind base/components/utilities` 대신)
@@ -201,3 +232,5 @@ src/
 4. **AbortController** — React에서 fetch 요청 취소로 race condition 방지
 5. **Context API + useReducer** — Redux 없이 전역 상태 관리
 6. **CSS 변수** — Tailwind와 함께 사용하여 일관된 디자인 시스템 구축
+7. **Vercel SPA 배포** — `vercel.json`의 `rewrites` 설정으로 React Router 클라이언트 라우팅 처리
+8. **Vercel GitHub 연동** — `main` 브랜치 push 시 자동 재배포 (CI/CD)
