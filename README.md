@@ -151,7 +151,8 @@ GitHub 다크 테마 기반 CSS 변수:
 
 ### 배포 URL
 > Vercel 대시보드에서 확인한 URL을 여기에 입력하세요.  
-> 예: `https://github-search-users-xxx.vercel.app`
+> 예: `https://git-hub-search-users.vercel.app`
+
 
 ### 배포 방법
 1. [vercel.com](https://vercel.com)에서 GitHub 계정으로 로그인
